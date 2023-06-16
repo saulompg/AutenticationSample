@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AutenticationSample</string>
+    <string name="hello">"Olá,"</string>
+    <string name="create_account">Crie sua Conta</string>
+    <string name="welcome">Bem vindo de volta</string>
+    <string name="first_name">Nome</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="hide_password">Ocultar senha</string>
+    <string name="show_password">Exibir senha</string>
+    <string name="terms_and_conditions">Ao continuar você aceita nossas Políticas de Privacidade e Termos de Uso</string>
+
 </resources>
