@@ -10,5 +10,6 @@
     <string name="hide_password">Ocultar senha</string>
     <string name="show_password">Exibir senha</string>
     <string name="terms_and_conditions">Ao continuar você aceita nossas Políticas de Privacidade e Termos de Uso</string>
+    <string name="terms_and_conditions_header">Termos de Uso</string>
 
 </resources>
