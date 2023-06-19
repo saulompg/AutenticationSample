@@ -5,20 +5,30 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.autenticationsample.app.PostOfficeApp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.autenticationsample.navigation.SetupNavGraph
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
+
+    // Declaração de objetos
+    private lateinit var navController : NavHostController
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PostOfficeApp()
+
+            navController = rememberNavController()
+            SetupNavGraph(navController = navController)
+
         }
+
         auth = Firebase.auth
+
     }
 
     private fun createUserEmailPassword(email: String, password: String) {

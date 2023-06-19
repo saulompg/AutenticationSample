@@ -10,14 +10,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.autenticationsample.R
 import com.example.autenticationsample.components.HeadingTextComponent
-import com.example.autenticationsample.navigation.PostOfficeAppRouter
-import com.example.autenticationsample.navigation.Screen
-import com.example.autenticationsample.navigation.SystemBackButtonHandler
 
 @Composable
-fun TermsAndConditionsScreen() {
+fun TermsAndConditionsScreen(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -26,14 +25,10 @@ fun TermsAndConditionsScreen() {
     ) {
         HeadingTextComponent(value = stringResource(id = R.string.terms_and_conditions_header))
     }
-
-    SystemBackButtonHandler {
-        PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
-    }
 }
 
 @Preview
 @Composable
 fun TermsAndConditionsScreenPreview() {
-    TermsAndConditionsScreen()
+    TermsAndConditionsScreen(navController = rememberNavController())
 }
