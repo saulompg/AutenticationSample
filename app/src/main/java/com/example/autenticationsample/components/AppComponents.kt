@@ -97,12 +97,7 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTextFieldComponent(
-    labelText: String,
-    painterResource: Painter,
-    onTextSelected: (String) -> Unit
-) {
-
+fun MyTextFieldComponent(labelText: String, painterResource: Painter) {
     var text by remember { mutableStateOf("") }
 
     OutlinedTextField(
@@ -118,26 +113,17 @@ fun MyTextFieldComponent(
         singleLine = true,
         maxLines = 1,
         value = text,
-        onValueChange = {
-            text = it
-            onTextSelected(it)
-        },
+        onValueChange = { text = it },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "ícone profile")
         },
         label = { Text(labelText) }
     )
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmailTextFieldComponent(
-    labelText: String,
-    painterResource: Painter,
-    onTextSelected: (String) -> Unit
-) {
-
+fun EmailTextFieldComponent(labelText: String, painterResource: Painter) {
     var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
@@ -153,26 +139,17 @@ fun EmailTextFieldComponent(
         singleLine = true,
         maxLines = 1,
         value = text,
-        onValueChange = {
-            text = it
-            onTextSelected(it)
-        },
+        onValueChange = { text = it },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "ícone profile")
         },
         label = { Text(labelText) }
     )
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(
-    labelText: String,
-    painterResource: Painter,
-    onTextSelected: (String) -> Unit
-) {
-
+fun PasswordTextFieldComponent(labelText: String, painterResource: Painter) {
     var password by remember { mutableStateOf("") }
     val localFocusManager = LocalFocusManager.current
 
@@ -187,6 +164,14 @@ fun PasswordTextFieldComponent(
             focusedLabelColor = Primary,
             focusedBorderColor = Primary
         ),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions {
+            localFocusManager.clearFocus()
+        },
+        singleLine = true,
+        maxLines = 1,
+        value = password,
+        onValueChange = { password = it },
         label = { Text(labelText) },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "ícone profile")
@@ -211,20 +196,8 @@ fun PasswordTextFieldComponent(
                 Icon(imageVector = iconImage, contentDescription = description)
             }
         },
-        visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions {
-            localFocusManager.clearFocus()
-        },
-        singleLine = true,
-        maxLines = 1,
-        value = password,
-        onValueChange = {
-            password = it
-            onTextSelected(it)
-        }
+        visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
     )
-
 }
 
 @Composable

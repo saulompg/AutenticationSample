@@ -49,18 +49,12 @@ fun LoginScreen(navController: NavController) {
             // adiciona o campo de email
             EmailTextFieldComponent(
                 labelText = stringResource(id = R.string.email),
-                painterResource = painterResource(id = R.drawable.message),
-                onTextSelected = {
-
-                }
+                painterResource = painterResource(id = R.drawable.message)
             )
             // adiciona o campo de senha
             PasswordTextFieldComponent(
                 labelText = stringResource(id = R.string.password),
-                painterResource = painterResource(id = R.drawable.lock),
-                onTextSelected = {
-
-                }
+                painterResource = painterResource(id = R.drawable.lock)
             )
             // adiciona um espaçador
             Spacer(modifier = Modifier.height(20.dp))
