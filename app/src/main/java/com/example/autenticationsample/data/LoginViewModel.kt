@@ -1,11 +1,9 @@
 package com.example.autenticationsample.data
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.example.autenticationsample.MainActivity
 import com.example.autenticationsample.data.rules.Validator
 import com.example.autenticationsample.navigation.Screen
 import com.google.firebase.auth.FirebaseAuth

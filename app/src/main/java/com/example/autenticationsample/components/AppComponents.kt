@@ -55,12 +55,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.autenticationsample.R
-import com.example.autenticationsample.navigation.Screen
 import com.example.autenticationsample.ui.theme.GrayColor
 import com.example.autenticationsample.ui.theme.Primary
 import com.example.autenticationsample.ui.theme.Secondary
 import com.example.autenticationsample.ui.theme.TextColor
-import kotlin.math.log
 
 @Composable
 fun NormalTextComponent(value: String) {
@@ -206,7 +204,7 @@ fun PasswordTextFieldComponent(
             }
 
             // altera a descrição do ícone password ao ser clicado
-            var description = if(passwordVisible) {
+            val description = if(passwordVisible) {
                 stringResource(id = R.string.hide_password)
             } else {
                 stringResource(id = R.string.show_password)
@@ -251,12 +249,12 @@ fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit, onChecke
                 onCheckedChange.invoke(it)
             }
         )
-        ClickableTextComponent(value = value,  onTextSelected)
+        ClickableTextComponent(onTextSelected)
     }
 }
 
 @Composable
-fun ClickableTextComponent(value : String, onTextSelected : (String) -> Unit) {
+fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
     val initialText = "Ao continuar você aceita nossas "
     val privacyPolicyText = "Políticas de Privacidade"
     val andText = " e "
