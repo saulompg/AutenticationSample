@@ -55,6 +55,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.autenticationsample.R
+import com.example.autenticationsample.navigation.Screen
 import com.example.autenticationsample.ui.theme.GrayColor
 import com.example.autenticationsample.ui.theme.Primary
 import com.example.autenticationsample.ui.theme.Secondary
@@ -100,7 +101,8 @@ fun HeadingTextComponent(value: String) {
 fun MyTextFieldComponent(
     labelText: String,
     painterResource: Painter,
-    onTextSelected: (String) -> Unit
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean = true
 ) {
 
     var text by remember { mutableStateOf("") }
@@ -125,7 +127,8 @@ fun MyTextFieldComponent(
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "ícone profile")
         },
-        label = { Text(labelText) }
+        label = { Text(labelText) },
+        isError = !errorStatus
     )
 
 }
@@ -135,7 +138,8 @@ fun MyTextFieldComponent(
 fun EmailTextFieldComponent(
     labelText: String,
     painterResource: Painter,
-    onTextSelected: (String) -> Unit
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean = true
 ) {
 
     var text by rememberSaveable { mutableStateOf("") }
@@ -160,7 +164,8 @@ fun EmailTextFieldComponent(
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "ícone profile")
         },
-        label = { Text(labelText) }
+        label = { Text(labelText) },
+        isError = !errorStatus
     )
 
 }
@@ -170,7 +175,8 @@ fun EmailTextFieldComponent(
 fun PasswordTextFieldComponent(
     labelText: String,
     painterResource: Painter,
-    onTextSelected: (String) -> Unit
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean = true
 ) {
 
     var password by remember { mutableStateOf("") }
@@ -222,13 +228,14 @@ fun PasswordTextFieldComponent(
         onValueChange = {
             password = it
             onTextSelected(it)
-        }
+        },
+        isError = !errorStatus
     )
 
 }
 
 @Composable
-fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit) {
+fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit, onCheckedChange : (Boolean) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -239,7 +246,10 @@ fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit) {
         var checked by remember { mutableStateOf(false) }
         Checkbox(
             checked = checked,
-            onCheckedChange = { checked = !checked }
+            onCheckedChange = {
+                checked = !checked
+                onCheckedChange.invoke(it)
+            }
         )
         ClickableTextComponent(value = value,  onTextSelected)
     }
@@ -279,9 +289,14 @@ fun ClickableTextComponent(value : String, onTextSelected : (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value: String) {
+fun ButtonComponent(
+    value: String,
+    onButtonClicked: () -> Unit
+) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+            onButtonClicked.invoke()
+        },
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(48.dp),
