@@ -90,9 +90,8 @@ fun SignUpScreen(navController: NavController, signUpViewModel: SignUpViewModel 
                 )
                 // insere o checkbox
                 CheckBoxComponent(
-                    value = stringResource(id = R.string.terms_and_conditions),
                     onTextSelected = {
-                        navController.navigate(Screen.TermsAndConditionsScreen.route)
+                        navController.navigate(it)
                     },
                     onCheckedChange = {
                         signUpViewModel.onEvent(SignUpUIEvent.PrivacyPolicyCheckBoxClicked(it))

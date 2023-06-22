@@ -14,19 +14,19 @@ import com.example.autenticationsample.R
 import com.example.autenticationsample.components.HeadingTextComponent
 
 @Composable
-fun TermsAndConditionsScreen() {
+fun PrivacyPolicyScreen() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
             .padding(16.dp)
     ) {
-        HeadingTextComponent(value = stringResource(id = R.string.terms_and_conditions))
+        HeadingTextComponent(value = stringResource(id = R.string.privacy_policy))
     }
 }
 
 @Preview
 @Composable
-fun TermsAndConditionsScreenPreview() {
-    TermsAndConditionsScreen()
+fun PrivacyPolicyScreenPreview() {
+    PrivacyPolicyScreen()
 }

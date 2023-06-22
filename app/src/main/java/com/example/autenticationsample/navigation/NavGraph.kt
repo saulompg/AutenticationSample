@@ -33,7 +33,13 @@ fun SetupNavGraph(
         composable(
             route = Screen.TermsAndConditionsScreen.route
         ) {
-            TermsAndConditionsScreen(navController = navController)
+            TermsAndConditionsScreen()
+        }
+
+        composable(
+            route = Screen.PrivacyPolicyScreen.route
+        ) {
+            PrivacyPolicyScreen()
         }
 
         composable(

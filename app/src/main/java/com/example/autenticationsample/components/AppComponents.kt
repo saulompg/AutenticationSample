@@ -55,6 +55,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.autenticationsample.R
+import com.example.autenticationsample.navigation.Screen
 import com.example.autenticationsample.ui.theme.GrayColor
 import com.example.autenticationsample.ui.theme.Primary
 import com.example.autenticationsample.ui.theme.Secondary
@@ -233,7 +234,7 @@ fun PasswordTextFieldComponent(
 }
 
 @Composable
-fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit, onCheckedChange : (Boolean) -> Unit) {
+fun CheckBoxComponent(onTextSelected : (String) -> Unit, onCheckedChange : (Boolean) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -249,24 +250,24 @@ fun CheckBoxComponent(value: String, onTextSelected : (String) -> Unit, onChecke
                 onCheckedChange.invoke(it)
             }
         )
-        ClickableTextComponent(onTextSelected)
+        ClickableTextComponent(onTextSelected = onTextSelected)
     }
 }
 
 @Composable
 fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
-    val initialText = "Ao continuar você aceita nossas "
-    val privacyPolicyText = "Políticas de Privacidade"
-    val andText = " e "
-    val termsOfUseText = "Termos de Uso"
+    val initialText = stringResource(id = R.string.agree)
+    val privacyPolicyText = stringResource(id = R.string.privacy_policy)
+    val andText = stringResource(id = R.string.and)
+    val termsOfUseText = stringResource(id = R.string.terms_and_conditions)
 
     val annotatedString = buildAnnotatedString {
-        append(initialText)
+        append("$initialText ")
         withStyle(style = SpanStyle(color = Primary)) {
             pushStringAnnotation(tag = privacyPolicyText, annotation = privacyPolicyText)
             append(privacyPolicyText)
         }
-        append(andText)
+        append(" $andText ")
         withStyle(style = SpanStyle(color = Primary)) {
             pushStringAnnotation(tag = termsOfUseText, annotation = termsOfUseText)
             append(termsOfUseText)
@@ -277,9 +278,11 @@ fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
     ClickableText(text = annotatedString, onClick = {offset ->
         annotatedString.getStringAnnotations(offset, offset)
             .firstOrNull()?.also {span ->
-                Log.d("ClickableTextComponent", "$span")
-                if(span.item == termsOfUseText || span.item == privacyPolicyText) {
-                    onTextSelected(span.item)
+                Log.d("ClickableTermsText", "$span")
+                if(span.item == termsOfUseText) {
+                    onTextSelected(Screen.TermsAndConditionsScreen.route)
+                } else if(span.item == privacyPolicyText) {
+                    onTextSelected(Screen.PrivacyPolicyScreen.route)
                 }
             }
         }
@@ -370,7 +373,7 @@ fun ClickableLoginTextComponent(tryingToLog: Boolean = true, onTextSelected : (S
         onClick = {offset ->
         annotatedString.getStringAnnotations(offset, offset)
             .firstOrNull()?.also {span ->
-                Log.d("ClickableLoginTextComponent", "$span")
+                Log.d("ClickableLoginText", "$span")
                 if(span.item == loginText) {
                     onTextSelected(span.item)
                 }

@@ -9,8 +9,10 @@
     <string name="password">Senha</string>
     <string name="hide_password">Ocultar senha</string>
     <string name="show_password">Exibir senha</string>
-    <string name="terms_and_conditions">Ao continuar você aceita nossas Políticas de Privacidade e Termos de Uso</string>
-    <string name="terms_and_conditions_header">Termos de Uso</string>
+    <string name="agree">Ao continuar você aceita nossas</string>
+    <string name="privacy_policy">Políticas de Privacidade</string>
+    <string name="and">e</string>
+    <string name="terms_and_conditions">Termos de Uso</string>
     <string name="register">Cadastrar-se</string>
     <string name="login">Entrar</string>
     <string name="or">ou</string>
